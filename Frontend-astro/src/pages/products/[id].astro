@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro'
 import AddToCartForm from '../../components/AddToCartForm.jsx'
 import { fetchProductById } from '../../api/catalog'
 import '../../styles/ProductDetail.css'
+import { imageUrl } from '../../lib/images'
 
 const { id } = Astro.params
 const product = id ? await fetchProductById(id) : null
@@ -28,7 +29,7 @@ const mainImage = images[0]
       <div class="product-detail__gallery">
         <div class="product-detail__main-image">
           {mainImage ? (
-            <img src={mainImage.url} alt={mainImage.alt || product.name} width="800" height="800" loading="eager" fetchpriority="high" decoding="async" />
+            <img src={imageUrl(mainImage.url)} alt={mainImage.alt || product.name} width="800" height="800" loading="eager" fetchpriority="high" decoding="async" />
           ) : (
             <div class="product-detail__no-image">Sin imagen</div>
           )}
@@ -37,7 +38,7 @@ const mainImage = images[0]
           <div class="product-detail__thumbs">
             {images.slice(1).map(img => (
               <div class="product-detail__thumb">
-                <img src={img.url} alt={img.alt} width="120" height="120" loading="lazy" decoding="async" />
+                <img src={imageUrl(img.url)} alt={img.alt} width="120" height="120" loading="lazy" decoding="async" />
               </div>
             ))}
           </div>

@@ -22,7 +22,7 @@ export default function Cart() {
               const unitPrice = item.product.price
               return (
                 <li key={item.id} className="cart-item">
-                  <img className="cart-item__image" src={item.product.images[0]?.url} alt={item.product.name} />
+                  <img className="cart-item__image" src={imageUrl(item.product.images[0]?.url)} alt={item.product.name} />
                   <div className="cart-item__info">
                     <p className="cart-item__name">{item.product.name}</p>
                     {(item.customization_text || item.wrap) && (
