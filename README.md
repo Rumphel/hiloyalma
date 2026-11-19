@@ -50,3 +50,6 @@ docker compose up --build
 - Tienda: http://localhost:15174
 - Admin: http://localhost:15174/admin (usuario admin23@gmail.com)
 - Tarjetas de prueba: nombre del titular APRO (aprueba), FUND (fondos insuficientes), SECU (código de seguridad inválido).
+
+## Enlace a página ya desplegada
+Una vez abierto el proyecto y teniendo el backend corriendo, acceder a la página `https://hiloyalma.netlify.app`.
