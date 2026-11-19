@@ -9,7 +9,7 @@ services:
       PayPal__BaseUrl: https://api-m.sandbox.paypal.com
 
       ASPNETCORE_ENVIRONMENT: Development
-      ApiBaseUrl: https://prescription-foam-norfolk-calculations.trycloudflare.com
+      ApiBaseUrl: https://rumpel.tail1c6ded.ts.net/
       AdminUser__Name: Administrador
       AdminUser__Email: admin23@gmail.com
       AdminUser__Password: ${ADMIN_PASSWORD}
