@@ -38,13 +38,13 @@ export default defineConfig({
       workbox: {
         navigateFallback: null,
         globPatterns: ['**/*.{css,js,svg,ico,woff2}', 'icons/*.png'],
-        runtimeCaching: [
+        /*runtimeCaching: [
           {
             urlPattern: ({ request }) => request.mode === 'navigate',
             handler: 'NetworkFirst',
             options: { cacheName: 'pages', networkTimeoutSeconds: 3 },
           },
-        ],
+        ],*/
       },
     }),
   ],
