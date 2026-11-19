@@ -1,0 +1,41 @@
+---
+import '../styles/tokens.css'
+import TopBar from '../components/TopBar.astro'
+import Footer from '../components/Footer.astro'
+import CartBootstrap from '../components/CartBootstrap.jsx'
+
+const {
+  title = 'Hilo y Alma',
+  description = 'Taller de crochet en Guadalajara: figuras, llaveros y decoración tejidos a mano.',
+} = Astro.props
+
+const apiUrl = import.meta.env.PUBLIC_API_URL
+const apiOrigin = apiUrl ? new URL(apiUrl).origin : null
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#8b3a3a" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {apiOrigin && <link rel="preconnect" href={apiOrigin} />}
+    <title>{title}</title>
+  </head>
+  <body>
+    <CartBootstrap client:idle />
+    <TopBar />
+    <slot />
+
+    <script>
+      import { registerSW } from 'virtual:pwa-register'
+      registerSW({ immediate: true })
+    </script>
+
+    <Footer />
+  </body>
+</html>

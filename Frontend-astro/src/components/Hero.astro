@@ -1,0 +1,23 @@
+---
+import { Image } from 'astro:assets'
+import heroImg from '../assets/heroImg2.png'
+import './Hero.css'
+---
+<section class="hero">
+  <div class="hero__text">
+    <p class="hero__eyebrow">Taller de crochet · Guadalajara</p>
+    <h1 class="hero__title">
+      Pequeñas piezas,
+      <br />
+      hechas para quedarse.
+    </h1>
+    <p class="hero__subtitle">
+      Figuras, llaveros y decoración tejidos a mano, con tiempo y atención
+      al detalle. Elige una pieza o hazla tuya.
+    </p>
+  </div>
+  <div class="hero__image" aria-hidden="true">
+    <!-- cambio de propiedades porque se ponia mamona -->
+    <Image src={heroImg} alt="" widths={[480, 768, 1024]} sizes="(max-width: 768px) 90vw, 560px" format="webp" quality={75} loading="eager" fetchpriority="high" decoding="async" />
+  </div>
+</section>

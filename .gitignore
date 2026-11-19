@@ -1,0 +1,48 @@
+# Dependencies
+**/node_modules/
+
+# Frontend build output
+**/dist/
+
+# Local databases and environment files
+**/db/data.sqlite
+**/.env
+**/.env.example
+
+# Local tooling
+.vscode/
+.idea/
+*.log
+
+# .NET
+**/bin/
+**/obj/
+
+# Rider
+.idea/
+*.sln.iml
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+
+# Code Coverage
+coverage/
+*.coverage
+*.coveragexml
+TestResults/
+
+# Sistema
+.DS_Store
+Thumbs.db
+Backend/src/ECommerce.Api/appsettings.Development.json
+
+!.env.example
+# Local Netlify folder
+.netlify
+PP1WEBBackoffice/

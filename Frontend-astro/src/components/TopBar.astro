@@ -1,0 +1,31 @@
+---
+import './TopBar.css'
+import { Image } from 'astro:assets'
+import carritoImg from '../assets/carrito.png'
+import CartCount from './CartCount.jsx'
+import AuthLinks from './AuthLinks.jsx'
+---
+<header class="topbar">
+  <div class="container topbar__inner">
+    <a href="/" class="topbar__brand">
+      <span class="topbar__brand-mark" aria-hidden="true">✳</span>
+      <span>Hilo <em>y</em> Alma</span>
+    </a>
+
+    <div class="topbar__right">
+      <div class="topbar__auth">
+        <AuthLinks client:idle />
+      </div>
+
+      <a href="/carrito" class="topbar__cart">
+        <Image class="topbar__cart-image"
+          src={carritoImg} alt="" width={48} height={48} format="webp" loading="eager"
+        />
+        <span>Carrito</span>
+        <span class="topbar__cart-count">
+          <CartCount client:idle />
+        </span>
+      </a>
+    </div>
+  </div>
+</header>
