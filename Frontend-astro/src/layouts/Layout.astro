@@ -27,7 +27,7 @@ const apiOrigin = apiUrl ? new URL(apiUrl).origin : null
     <title>{title}</title>
   </head>
   <body>
-    <CartBootstrap client:idle />
+    <CartBootstrap client:only="react" />
     <TopBar />
     <slot />
 

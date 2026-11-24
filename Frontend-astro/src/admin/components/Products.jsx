@@ -1,3 +1,4 @@
+import { imageUrl } from '../../lib/images'
 import React, { useEffect, useState } from 'react'
 import {
   createProduct,

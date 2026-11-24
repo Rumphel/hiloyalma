@@ -15,9 +15,10 @@ export default defineConfig({
   integrations: [
     react(),
     AstroPWA({
+      strategies: 'buildSW',
       registerType: 'autoUpdate',
-      injectRegister: false, // el registro se hace a mano en el layout
-      includeAssets: ['favicon.svg'],
+      injectRegister: false, //el registro se hace a mano en el layout
+      //includeAssets: ['favicon.svg'],
       manifest: {
         id: '/',
         name: 'Hilo y Alma',
@@ -35,16 +36,14 @@ export default defineConfig({
           { src: '/icons/icon-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
         ],
       },
-      workbox: {
-        navigateFallback: null,
-        globPatterns: ['**/*.{css,js,svg,ico,woff2}', 'icons/*.png'],
-        /*runtimeCaching: [
-          {
-            urlPattern: ({ request }) => request.mode === 'navigate',
-            handler: 'NetworkFirst',
-            options: { cacheName: 'pages', networkTimeoutSeconds: 3 },
-          },
-        ],*/
+      buildSW: {
+        swSrc: 'src/sw.js',
+        globPatterns: [
+          '_astro/**/*.{css,js,woff2,webp,svg}',
+          'icons/*.png',
+          'favicon.svg',
+          'offline.html',
+        ],
       },
     }),
   ],

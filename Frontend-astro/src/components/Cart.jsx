@@ -1,3 +1,4 @@
+import { imageUrl } from '../lib/images'
 import { useCart } from '../stores/cart'
 import '../styles/Cart.css'
 
