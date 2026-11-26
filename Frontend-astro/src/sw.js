@@ -1,8 +1,16 @@
 const VERSION = 'v1'
 //solo archivos del front
-const MANIFEST = self.__WB_MANIFEST.filter((entry) =>
-  /^(_astro\/|icons\/|favicon\.svg$|offline\.html$)/.test(entry.url.replace(/^\//, '')),
-)
+const seen = new Set()
+const MANIFEST = self.__WB_MANIFEST
+  .filter((entry) =>
+    /^(_astro\/|icons\/|favicon\.svg$|offline\.html$)/.test(entry.url.replace(/^\//, '')),
+  )
+  .filter((entry) => {
+    const key = entry.url.replace(/^\//, '')
+    if (seen.has(key)) return false
+    seen.add(key)
+    return true
+  })
 
 const hash = (text) => {
   let h = 5381
@@ -33,8 +41,22 @@ self.addEventListener('install', (event) => {
     (async () => {
       const cache = await caches.open(PRECACHE)
 
-      await cache.addAll(MANIFEST.map((e) => new Request(e.url, { cache: 'reload' })))
+      //cada archivo por separado
+      const results = await Promise.allSettled(
+        MANIFEST.map((e) => cache.add(new Request(e.url, { cache: 'reload' }))),
+      )
+      results.forEach((r, i) => {
+        if (r.status === 'rejected') console.warn('[sw] no se pudo guardar', MANIFEST[i].url, r.reason)
+      })
 
+      //la pagina estando offline se guarda siempre
+      try {
+        await cache.add(new Request('/offline.html', { cache: 'reload' }))
+      } catch (error) {
+        console.warn('[sw] no se pudo guardar /offline.html', error)
+      }
+
+      //portada depende del back
       try {
         await cache.add(new Request('/', { cache: 'reload' }))
       } catch {
