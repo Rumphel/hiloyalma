@@ -1,5 +1,8 @@
 const VERSION = 'v1'
-const MANIFEST = self.__WB_MANIFEST
+//solo archivos del front
+const MANIFEST = self.__WB_MANIFEST.filter((entry) =>
+  /^(_astro\/|icons\/|favicon\.svg$|offline\.html$)/.test(entry.url.replace(/^\//, '')),
+)
 
 const hash = (text) => {
   let h = 5381
